@@ -221,6 +221,7 @@ header .intro-text .intro-lead-in
 	font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-style:italic;
 	font-size:22px;
+	color:blue;
 	line-height:22px;
 	margin-bottom:25px
 }
@@ -230,6 +231,7 @@ header .intro-text .intro-heading
 	text-transform:uppercase;
 	font-weight:700;
 	font-size:50px;
+	color:blue;
 	line-height:50px;
 	margin-bottom:25px
 }

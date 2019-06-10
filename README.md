@@ -6,7 +6,7 @@ DBMS project for online Food Ordering system.
 
 Deployed on http://foodkgp.pythonanywhere.com
 
-![Screenshot](Screenshot.png)
+![Screenshot](Screenshot.jpg)
 
 The frontend specifically can be found in `front-end/` folder.
 
