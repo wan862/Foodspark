@@ -46,6 +46,9 @@ class Restaurant(models.Model):
 	def set_password(self, password):
 		self.password = password
 
+	def __unicode__(self):
+		return self.name
+
 class Customer(models.Model):
 	# userid = models.CharField(primary_key = True,max_length =50)
 	password = models.CharField(max_length=100)
@@ -66,6 +69,9 @@ class Customer(models.Model):
 	def set_password(self, password):
 		self.password = password
 
+	def __unicode__(self):
+		return self.name
+
 class FoodItem(models.Model):
 	resid = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
 	name = models.CharField(max_length=500)
@@ -81,6 +87,9 @@ class FoodItem(models.Model):
 	ordercount = models.IntegerField(default = 0)
 	# image = models.ImageField(null = True) ###########################################################
 	# group = models.ForeignKey()
+
+	def __unicode__(self):
+		return self.name
 
 class Order(models.Model):
  	customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
