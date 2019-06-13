@@ -48,9 +48,9 @@ def home(request):
 
 @ensure_csrf_cookie
 def login(request):
-	print "hello"
+	# print "hello"
 	if request.method == 'POST':
-		print request.POST.keys()
+		# print request.POST.keys()
 		email = request.POST.get('email')
 		password = request.POST.get('password')
 		try:
