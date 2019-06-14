@@ -30,11 +30,10 @@ class Restaurant(models.Model):
 	# rating = models.CharField(null = True,max_length=1,choices = RATING)
 	# countrating = models.IntegerField(default = 0)
 	city = models.CharField(max_length = 100,null = True)
-	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.") #############look into regex
+	phone_regex = RegexValidator(regex=r'^\d{8}$', message="Phone number must be entered in the format: '99999999'. 8 digits only.") #############look into regex
 	phone = models.CharField(validators=[phone_regex],max_length=15,blank = True)
-	#image = models.ImageField(default = '/home/projjal/Projects/Foodspark/foodspark/static/img')
 	imgurl = models.CharField(max_length=1000,null=True)
-	 ############################################################
+	############################################################
 	def make_password(self ,password):
 		assert password
 		hashedpassword = hashlib.md5(password).hexdigest()
@@ -54,9 +53,9 @@ class Customer(models.Model):
 	password = models.CharField(max_length=100)
 	name = models.CharField(max_length=200)
 	address = models.TextField()
-	city = models.CharField(max_length = 100)
+	city = models.CharField(max_length = 100, default='Singapore')
 	email = models.EmailField(primary_key = True)
-	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.") #############look into regex
+	phone_regex = RegexValidator(regex=r'^\d{8}$', message="Phone number must be entered in the format: '99999999'. 8 digits only.") #############look into regex
 	phone = models.CharField(validators=[phone_regex],max_length=15,blank = True)
 	def make_password(self ,password):
 		assert password

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/static/img/logo.ico">
 
-    <title>Home Foodspark</title>
+    <title>Home Foodfair</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
     <!-- navbar centred text vertically with  line-height-->
     <nav class="navbar navbar-nav navbar-default navbar-fixed-top" style="line-height:50px;height:60px;">
         <div class="container" style="margin:0 !important;">
-            <span class="navbar-left" style="font-size:1.2em;"><img src="/static/img/logo.gif" class="logo_bitch"/>   FOODSPARK</span>
+            <span class="navbar-left" style="font-size:1.2em;"><img src="/static/img/logo.gif" class="logo_bitch"/>   FOODFAIR</span>
 
             <!-- Search bar -->
             <form class="input-group" style="height: 100%;" action="/search/" method="get">
@@ -140,7 +140,7 @@
                             {% for restaurant in restaurants %}
                             <div class="col-sm-4">
                                 <div class="card" style="width: 15rem;">
-                                    <a href = "/restaurant/{{restaurant.name}}"><img class="card-img-top" src="/static/img/bg.jpg" alt="Card image cap"></a>
+                                    <a href = "/restaurant/{{restaurant.name}}"><img class="card-img-top" src="{{restaurant.imgurl}}" alt="Card image cap"></a>
                                     <div class="card-block">
                                         <h4 class="card-title"><a href = "/restaurant/{{restaurant.name}}">{{restaurant.name}}</a></h4>
 

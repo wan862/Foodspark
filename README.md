@@ -1,4 +1,4 @@
-# Foodspark
+# Foodfair
 
 ![logo](front-end/img/logo.ico)
 

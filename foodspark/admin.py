@@ -1,20 +1,11 @@
 from django.contrib import admin
-
 from .models import *
-
-# Register your models here.
-
-#admin.site.register(Customer)
-#admin.site.register(Restaurant)
-#admin.site.register(FoodItem)
-#admin.site.register(Order)
-#admin.site.register(Cart)
 
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email')
 
 class RestaurantAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'email', 'address')
+    list_display = ('name', 'phone', 'email', 'address', 'imgurl')
 
 class FoodItemAdmin(admin.ModelAdmin):
     list_display = ('resid', 'name', 'cuisine', 'price', 'availability_time')
@@ -25,6 +16,7 @@ class OrderAdmin(admin.ModelAdmin):
 class CartAdmin(admin.ModelAdmin):
     list_display = ('customer', 'fooditem', 'foodqty')
 
+# Register your models here.
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(FoodItem, FoodItemAdmin)
