@@ -29,7 +29,6 @@ class Restaurant(models.Model):
 	# )
 	# rating = models.CharField(null = True,max_length=1,choices = RATING)
 	# countrating = models.IntegerField(default = 0)
-	city = models.CharField(max_length = 100,null = True)
 	phone_regex = RegexValidator(regex=r'^\d{8}$', message="Phone number must be entered in the format: '99999999'. 8 digits only.") #############look into regex
 	phone = models.CharField(validators=[phone_regex],max_length=15)
 	imgurl = models.CharField(max_length=1000,null=True)
@@ -81,8 +80,7 @@ class FoodItem(models.Model):
 		('d','Desert')
 	)
 	course = models.CharField(max_length=1,choices=COURSE)
-	price = models.IntegerField()
-	availability_time = models.TimeField()
+	price = models.FloatField()
 	ordercount = models.IntegerField(default = 0)
 	# image = models.ImageField(null = True) ###########################################################
 	# group = models.ForeignKey()

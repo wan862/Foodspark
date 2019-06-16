@@ -135,7 +135,7 @@
                                 <div class="carttable recommend offset8" style="float:right;">
                                     <h4 class="recoh">Cart</h4>
                                     <hr class="liner" />
-                                    Total : &cent;<span style="font-size:1.2em;" id="totalamount">0</span>
+                                    Total : $<span style="font-size:1.2em;" id="totalamount">0</span>
                                     <br />
                                     <br />
                                     <button class="btn btn-primary" type="submit" a href="#">Add to cart</button>
@@ -185,8 +185,8 @@
         var num = parseInt($(".ordernum#"+this.id).html());
         $('.ordernum#'+this.id).html(num+1);
         document.getElementById('num'+this.id).value = num+1;
-        var total = parseInt($('span#totalamount').html());
-        var pr = parseInt($('td#'+this.id).html());
+        var total = parseFloat($('span#totalamount').html());
+        var pr = parseFloat($('td#'+this.id).html());
         $('span#totalamount').html(pr + total)
     });
 
@@ -196,8 +196,8 @@
         {
             $('.ordernum#'+this.id).html(num-1);
             document.getElementById('num'+this.id).value = num-1;
-            var total = parseInt($('span#totalamount').html());
-            var pr = parseInt($('td#'+this.id).html());
+            var total = parseFloat($('span#totalamount').html());
+            var pr = parseFloat($('td#'+this.id).html());
             $('span#totalamount').html(total-pr)
         }
     });

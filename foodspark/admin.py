@@ -8,7 +8,7 @@ class RestaurantAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address', 'imgurl')
 
 class FoodItemAdmin(admin.ModelAdmin):
-    list_display = ('resid', 'name', 'cuisine', 'price', 'availability_time')
+    list_display = ('resid', 'name', 'cuisine', 'price' )
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('customer', 'restaurant', 'foodlist', 'foodqty', 'amount', 'ordertime', 'orderdate', 'deliverystatus')
