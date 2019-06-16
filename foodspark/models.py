@@ -89,11 +89,11 @@ class FoodItem(models.Model):
 		return self.name
 
 class Order(models.Model):
- 	customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
- 	restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
- 	foodlist = models.CharField(max_length = 500,validators=[validate_comma_separated_integer_list],null=True)
- 	foodqty = models.CharField(max_length = 500,validators=[validate_comma_separated_integer_list],null=True)
- 	amount = models.IntegerField(default = 0)
+	customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+	restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
+	foodlist = models.CharField(max_length = 500,validators=[validate_comma_separated_integer_list],null=True)
+	foodqty = models.CharField(max_length = 500,validators=[validate_comma_separated_integer_list],null=True)
+	amount = models.FloatField(default = 0)
 	ordertime = models.TimeField()
 	orderdate = models.DateField(auto_now_add=True)	
 
