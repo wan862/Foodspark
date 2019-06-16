@@ -89,7 +89,7 @@
                             <form action='/addtocart/' method='post' id="terabaaphumain">
                             {% csrf_token %}
 
-                                <div class="foodtable lefty">
+                                <div class="foodtable">
                                     {% if fooditems %}
                                     {% for x,y in fooditems.items %}
                                     <h2>Cuisine: {{x}}</h2>
