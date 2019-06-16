@@ -118,12 +118,8 @@
                                 <div class="carttable recommend offset8" style="float:right;padding-bottom:20px !important;">
                                     <h4 class="recoh">Check Out: ${{amount}}</h4>
                                     <hr class="liner" />
-                                    <a class="btn btn-primary" href="/clearcart/">
-                                        Clear
-                                    </a>
-                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#addmenu">
-                                        Order
-                                    </button>
+                                    <a class="btn btn-primary" href="/clearcart/">Clear</a>
+                                    <button class="btn btn-primary"  data-toggle="modal" data-target="#addmenu">Order</button>
 
                                     <div id="addmenu" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom_modalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -131,20 +127,13 @@
                                                 <div class="modal-body">
                                                     <form name="newMenuForm" action='/cart/' method="post" class="signup" novalidate>
                                                     {% csrf_token %}
-                                                        <p class="title">Payment Details</p>
-                                                        <input type="text" name="bank" placeholder="Bank" required autofocus />
-                                                        <i class="fa fa-user"></i>
-                                                        <!--<input type="text" placeholder="Lastname" equired autofocus/>
-                                                        <i class="fa fa-user"></i>-->
-                                                        <input type="text" name="cardno" placeholder="Card Number" requuired autofocus/>
-                                                        <i class="fa fa-user"></i>
-                                                        <input type="text" name="cvv" placeholder="CVV" required autofocus/>
-                                                        <i class="fa fa-user"></i>
-                                                        <input readonly name="amount" placeholder={{amount}} value={{amount}} />
+                                                        <p class="title">Order Details</p>
+                                                        Amount : ${{amount}}<br/>
+                                                        Are you sure to make order?
                                                         <i class="fa fa-user"></i>
                                                         <button class="btn btn-lg btn-success btn-block" type="submit" a href="#">
                     	                                    <i class="spinner"></i>
-                    	                                    <span class="state" type="submit">Make payment</span>
+                    	                                    <span class="state" type="submit">Order</span>
                                                         </button>
                                                     </form>
                                                 </div>

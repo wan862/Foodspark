@@ -384,7 +384,6 @@ def history(request):
 		for x in query:
 			if x.customer == customer:
 				if(x.deliverystatus == 'p'):
-					print "1"
 					dic2 = {}
 					x.calamount()
 					for i,j in zip(x.getfooditems(),x.getqty()):
