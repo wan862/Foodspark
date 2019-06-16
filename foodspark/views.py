@@ -28,8 +28,6 @@ def home(request):
 			for x in query:
 				if x.restaurant_id == restaurant.email:
 					dic2 = {}
-					if(x.deliverystatus == 'd'):
-						continue
 					x.calamount()
 					for i,j in zip(x.getfooditems(),x.getqty()):
 						dic2[i] = j
@@ -247,8 +245,6 @@ def restaurantOrderHistory(request):
 	for x in query:
 		if x.restaurant_id == restaurant.email:
 			dic2 = {}
-			if(x.deliverystatus == 'p'):
-				continue
 			x.calamount()
 			for i,j in zip(x.getfooditems(),x.getqty()):
 				dic2[i] = j
@@ -343,7 +339,7 @@ def cart(request):
 						ordersqty[q.fooditem.resid] = str(q.foodqty)
 					q.delete()
 			for x,y in zip(orders,ordersqty):
-				o = Order(customer=customer,restaurant=x,foodlist=orders[x],foodqty=ordersqty[y],ordertime=datetime.datetime.now(),deliverystatus='p')
+				o = Order(customer=customer,restaurant=x,foodlist=orders[x],foodqty=ordersqty[y],ordertime=datetime.datetime.now())
 				o.calamount()
 				o.save()
 			messages.success(request,"Payment Successfull :)")
@@ -377,34 +373,21 @@ def history(request):
 	if 'id' in request.session.keys():
 		customer = Customer.objects.get(email=request.session['id'])
 		query = Order.objects.order_by('-pk').all()
-		pending_rest = {}
-		pending_items = {}
-		history_rest = {}
-		history_items = {}
+		restaurants = {}
+		fooditems = {}
 		for x in query:
 			if x.customer == customer:
-				if(x.deliverystatus == 'p'):
 					dic2 = {}
 					x.calamount()
 					for i,j in zip(x.getfooditems(),x.getqty()):
 						dic2[i] = j
-					pending_items[x] = dic2
-					pending_rest[x] = x.restaurant
-				if(x.deliverystatus == 'd'):
-					dic2 = {}
-					x.calamount()
-					for i,j in zip(x.getfooditems(),x.getqty()):
-						dic2[i] = j
-					history_items[x] = dic2
-					history_rest[x] = x.restaurant
-
+					fooditems[x] = dic2
+					restaurants[x] = x.restaurant
 
 		context = {
 			'customer' : customer,
-			'pending_items' : pending_items,
-			'pending_rest' : pending_rest,
-			'history_items' : history_items,
-			'history_rest' : history_rest,
+			'fooditems' : fooditems,
+			'restaurants' : restaurants,
 		}
 		return render(request,"foodspark/userhistory.html",context)
 	else:
@@ -451,7 +434,6 @@ def saveToCart(request):
 def delivered(request):
 	if 'id' in request.session.keys() and request.session['type'] == 'restaurant':
 		order = Order.objects.get(pk = request.POST['orderid'])
-		order.deliverystatus = 'd'
 		order.save()
 		return redirect('/')
 

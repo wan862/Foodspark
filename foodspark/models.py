@@ -96,11 +96,6 @@ class Order(models.Model):
  	amount = models.IntegerField(default = 0)
 	ordertime = models.TimeField()
 	orderdate = models.DateField(auto_now_add=True)	
-	DSTATUS = (
-		('p','Pending'),
-		('d','Delivered')
-	)
-	deliverystatus = models.CharField(max_length=1,choices=DSTATUS,default = 'p')
 
 	def calamount(self):
 		self.amount = 0
