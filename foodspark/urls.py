@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^details/?$',views.details,name='details'),
     url(r'^savedetails/?$',views.editDetails,name='editDetails'),
     url(r'^cart/?$',views.cart,name='cart'),
+    url(r'^clearcart/$',views.clearCart,name='clearCart'),
     url(r'^history/?$',views.history,name='history'),
     url(r'^addtocart/?$',views.saveToCart,name='saveToCart'),
     url(r'^restprofile/?$',views.restprofile,name='restprofile'),

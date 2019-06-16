@@ -116,10 +116,13 @@
 
                                 {%if cart%}
                                 <div class="carttable recommend offset8" style="float:right;padding-bottom:20px !important;">
-                                    <h4 class="recoh">Check Out</h4>
+                                    <h4 class="recoh">Check Out: ${{amount}}</h4>
                                     <hr class="liner" />
+                                    <a class="btn btn-primary" href="/clearcart/">
+                                        Clear
+                                    </a>
                                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addmenu">
-                                        Make payment
+                                        Order
                                     </button>
 
                                     <div id="addmenu" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom_modalLabel" aria-hidden="true">

@@ -351,6 +351,13 @@ def cart(request):
 	else:
 		return render(request,"foodspark/login.html")
 
+def clearCart(request):
+	customer = Customer.objects.get(email=request.session['id'])
+	for q in Cart.objects.all():
+		if q.customer == Customer.objects.get(email=request.session['id']):
+			q.delete()
+	return redirect('/cart/')
+
 def details(request):
 	if 'id' in request.session.keys():
 		if request.session['type'] == 'customer':
