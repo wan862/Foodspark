@@ -13,12 +13,6 @@ class Restaurant(models.Model):
 	password = models.CharField(max_length=100)
 	name = models.CharField(max_length=200)
 	address = models.TextField()
-	RES_TYPE = (
-		('B','Bar'),
-		('R','Restaurant'),
-		('C','Cafe')
-	)
-	res_type = models.CharField(max_length=1,choices = RES_TYPE,default = 'R')
 	cuisine = models.CharField(null = True, max_length=100)
 	# RATING = (
 	# 	('1','1'),
@@ -52,7 +46,6 @@ class Customer(models.Model):
 	password = models.CharField(max_length=100)
 	name = models.CharField(max_length=200)
 	address = models.TextField()
-	city = models.CharField(max_length = 100, default='Singapore')
 	email = models.EmailField(primary_key = True)
 	phone_regex = RegexValidator(regex=r'^\d{8}$', message="Phone number must be entered in the format: '99999999'. 8 digits only.") #############look into regex
 	phone = models.CharField(validators=[phone_regex],max_length=15,blank = True)
