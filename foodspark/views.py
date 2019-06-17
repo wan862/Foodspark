@@ -342,7 +342,8 @@ def cart(request):
 				o = Order(customer=customer,restaurant=x,foodlist=orders[x],foodqty=ordersqty[y],ordertime=datetime.datetime.now())
 				o.calamount()
 				o.save()
-			messages.success(request,"Payment Successfull :)")
+				o.send_sms()
+			messages.success(request,"Order Successfull :)")
 			return render(request,"foodspark/ordercart.html")
 	else:
 		return render(request,"foodspark/login.html")

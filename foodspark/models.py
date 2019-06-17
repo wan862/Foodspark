@@ -6,6 +6,7 @@ import hashlib
 from django.core.validators import  *
 from django.core.exceptions import ValidationError
 import datetime
+import sms
 
 # default order time bug hai
 class Restaurant(models.Model):
@@ -108,6 +109,25 @@ class Order(models.Model):
 	def getqty(self):
 		myl = self.foodqty.split(",")
 		return myl
+
+	def send_sms(self):
+		myl = self.foodlist.split(",")
+		qty = self.foodqty.split(",")
+		amount = 0
+		text = ''
+		for x,y in zip(myl,qty):
+			fitem = FoodItem.objects.get(pk=int(x))
+			text += ' {0}|qty={1};'.format(fitem.name, y)
+			amount += fitem.price*int(y)
+		text += ' total:${0}'.format(amount)
+
+		# send sms to Restaurent
+		header1 = 'Order from {0}|{1}:'.format(self.customer.name, self.customer.phone)
+		sms.send(self.restaurant.phone, header1+text)
+
+		# send sms to Customer
+		header2 = 'You have ordered from {0}|{1}:'.format(self.restaurant.name, self.restaurant.phone)
+		sms.send(self.customer.phone, header2+text)
 
 class Cart(models.Model):
 	customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
