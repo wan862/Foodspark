@@ -8,6 +8,8 @@ from django.core.exceptions import ValidationError
 import datetime
 import sms
 
+PICKUP_TIME_FORMAT = '%H:%M'
+
 # default order time bug hai
 class Restaurant(models.Model):
 	email = models.EmailField(primary_key = True)
@@ -89,7 +91,7 @@ class Order(models.Model):
 	foodqty = models.CharField(max_length = 500,validators=[validate_comma_separated_integer_list],null=True)
 	amount = models.FloatField(default = 0)
 	ordertime = models.TimeField()
-	pickuptime = models.TimeField(auto_now=True)
+	pickuptime = models.TimeField()
 	orderdate = models.DateField(auto_now_add=True)	
 
 	def calamount(self):
@@ -121,6 +123,7 @@ class Order(models.Model):
 			text += ' {0}|qty={1};'.format(fitem.name, y)
 			amount += fitem.price*int(y)
 		text += ' total:${0}'.format(amount)
+		text += ', pick-up at {0}'.format(self.pickuptime.strftime(PICKUP_TIME_FORMAT))
 
 		# send sms to Restaurent
 		header1 = 'Order from {0}|{1}:'.format(self.customer.name, self.customer.phone)

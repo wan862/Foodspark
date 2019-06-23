@@ -8,7 +8,6 @@ from django.contrib import messages
 from django.core.exceptions import *
 import datetime
 
-
 def home(request):
 	if 'id' in request.session.keys():
 		if request.session['type'] == 'customer':
@@ -325,6 +324,14 @@ def cart(request):
 		elif request.method == 'POST':
 			########delete cart update order
 			customer = Customer.objects.get(email=request.session['id'])
+			pickuptime_min = (datetime.datetime.now()+datetime.timedelta(hours=1)).time()
+			pickuptime_input = request.POST.get('pickuptime')
+			if pickuptime_input:
+				pickuptime = datetime.datetime.strptime(pickuptime_input, PICKUP_TIME_FORMAT).time()
+				if pickuptime < pickuptime_min:
+					pickuptime = pickuptime_min
+			else:
+				pickuptime = pickuptime_min
 			orders = {}
 			ordersqty = {}
 			for q in Cart.objects.all():
@@ -339,7 +346,8 @@ def cart(request):
 						ordersqty[q.fooditem.resid] = str(q.foodqty)
 					q.delete()
 			for x,y in zip(orders,ordersqty):
-				o = Order(customer=customer,restaurant=x,foodlist=orders[x],foodqty=ordersqty[y],ordertime=datetime.datetime.now())
+				o = Order(customer=customer,restaurant=x,foodlist=orders[x],foodqty=ordersqty[y],
+					pickuptime=pickuptime, ordertime=datetime.datetime.now())
 				o.calamount()
 				o.save()
 				o.send_sms()
@@ -447,7 +455,7 @@ def addfooditem(request):
 		name = request.POST['name']
 		cuisine = request.POST['cuisine']
 		price = request.POST['price']
-		food = FoodItem(resid=restaurant,name=name,cuisine=cuisine,price=price,course='s',availability_time=datetime.datetime.now())
+		food = FoodItem(resid=restaurant,name=name,cuisine=cuisine,price=price,course='m')
 		food.save()
 		return redirect('/restprofile/')
 	else:

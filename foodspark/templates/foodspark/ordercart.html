@@ -18,6 +18,7 @@
     <link href="/static/css/agency2.css" rel="stylesheet">
     <link href="/static/css/mystyle.css" rel="stylesheet">
     <link href="/static/css/simple-sidebar.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-timepicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -125,10 +126,18 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-body">
-                                                    <form name="newMenuForm" action='/cart/' method="post" class="signup" novalidate>
+                                                    <form name="newMenuForm" action='/cart/' method="post" class="signup" onsubmit="return validateForm()">
                                                     {% csrf_token %}
                                                         <p class="title">Order Details</p>
                                                         Amount : ${{amount}}<br/>
+                                                        <div class="form-group">
+                                                            <label for="pickuptime">Pick-up Time (at least 1 hour later)</label>
+                                                            <div class="input-group bootstrap-timepicker timepicker">
+                                                                <input name="pickuptime" id="pickuptime" type="text" class="form-control input-small">
+                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                                            </div>
+                                                            <span id="pickuptime_error" class="text-danger"></span>
+                                                        </div>
                                                         Are you sure to make order?
                                                         <i class="fa fa-user"></i>
                                                         <button class="btn btn-lg btn-success btn-block" type="submit" a href="#">
@@ -140,17 +149,10 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 {%endif%}
                             </div>
-
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -166,6 +168,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery-clockpicker.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-timepicker.min.js"></script>
 
     <!-- Menu Toggle Script -->
     <script>
@@ -186,7 +189,20 @@
         input.clockpicker('show')
                 .clockpicker('toggleView', 'hours');
     });
+    </script>
+    <script type="text/javascript">
+        $('#pickuptime').timepicker({showMeridian: false});
 
+        function validateForm() {
+            var pickuptime_str = $('#pickuptime').val();
+            var pickuptime = new Date('1970-01-01T' + pickuptime_str + ':00');
+            var current_time = new Date();
+            if ((pickuptime.getHours()*60+pickuptime.getMinutes()) < (current_time.getHours()+1)*60+current_time.getMinutes()){
+                $('#pickuptime_error').text("pick-up time must be at least 1 hour later");
+                return false;
+            }
+            return true;
+        }        
     </script>
 
 </body>
