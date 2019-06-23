@@ -89,6 +89,7 @@ class Order(models.Model):
 	foodqty = models.CharField(max_length = 500,validators=[validate_comma_separated_integer_list],null=True)
 	amount = models.FloatField(default = 0)
 	ordertime = models.TimeField()
+	pickuptime = models.TimeField(auto_now=True)
 	orderdate = models.DateField(auto_now_add=True)	
 
 	def calamount(self):
