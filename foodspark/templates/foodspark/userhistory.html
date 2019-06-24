@@ -18,55 +18,15 @@
     <!-- Custom CSS -->
     <link href="/static/css/mystyle.css" rel="stylesheet">
     <link href="/static/css/simple-sidebar.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
 
 </head>
 
 <body>
-    <!-- navbar centred text vertically with  line-height-->
-    <nav class="navbar navbar-nav navbar-default navbar-fixed-top" style="line-height:50px;height:60px;">
-        <div class="container" style="margin:0 !important;">
-            <span class="navbar-left" style="font-size:1.2em;"><img src="/static/img/logo.gif" class="logo_bitch"/>   FOODFAIR</span>
-
-        </div>
-    </nav>
+    {% include "navbar.html" %}
 
     <div id="wrapper">
+        {% include "sidebar.html" %}
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="/home/">
-                        Hello, {{customer.name}}
-                    </a>
-                </li>
-                <li>
-                    <a href="/details/">Details</a>
-                </li>
-                <li>
-                    <a href="#">Order History</a>
-                </li>
-                <li>
-                    <a href="/cart/">Order Cart</a>
-                </li>
-                <li>
-                    <a href="/logout/">Log out</a>
-                </li>
-                <li>
-                    <a href="/about/">About</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <div style="margin-top:60px;">
-
-        </div>
-<!--
-        <a href="#menu-toggle" class="btn btn-default fa-bars" id="menu-toggle">
-             <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </a>-->
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
@@ -81,7 +41,7 @@
                         <div class="card">
                             <div class="card-header">
                             Total : ${{x.amount}}
-                                <span style="float:right;">
+                                <span>
                                 <i class="glyphicon glyphicon-calendar blueicon ordercard"></i> {{x.orderdate}}
                                 <i class="glyphicon glyphicon-time blueicon ordercard"></i> {{x.ordertime}}
                                 <i class="glyphicon glyphicon-cutlery blueicon ordercard"></i> {{z.name}}

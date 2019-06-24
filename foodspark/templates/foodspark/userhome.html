@@ -19,78 +19,14 @@
     <link href="/static/css/mystyle.css" rel="stylesheet">
     <link href="/static/css/simple-sidebar.css" rel="stylesheet">
 
-    <!-- This is for card view -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
 </head>
 
 <body>
-    <!-- navbar centred text vertically with  line-height-->
-    <nav class="navbar navbar-nav navbar-default navbar-fixed-top" style="line-height:50px;height:60px;">
-        <div class="container" style="margin:0 !important;">
-            <span class="navbar-left" style="font-size:1.2em;"><img src="/static/img/logo.gif" class="logo_bitch"/><a href="/home/">   FOODFAIR</a></span>
-
-            <!-- Search bar -->
-            <!-- <form class="input-group" style="height: 100%;" action="/search/" method="get">
-            {%csrf_token%}
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle navbar-btn usersearchbtn1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                        <span id="search_concept" >All</span></button>
-                    <ul class="dropdown-menu scrollable-dropdown" aria-labelledby="usersearchbtn1" style="margin-top: -36px;">
-                        <li><a href="#">All</li>
-                        <li><a href="#">Restaurant</li>
-                        <li><a href="#">Food</li>
-                        <li><a href="#">Cuisine</li>
-                        <li><a href="#">City</li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="All" id="search_param" />
-                <input type="text" class="form-control" name="search" id="usersearch" placeholder={% if searchkey %}{{searchkey}} {% else %} "Search" {%endif%} />
-                <span class="input-group-btn">
-                    <button class="btn btn-outline-secondary navbar-btn usersearchbtn" type="button">
-                        <span class="glyphicon glyphicon-search" ></span>
-                    </button>
-                </span>
-            </form> -->
-
-        </div>
-    </nav>
+    {% include "navbar.html" %}
 
     <div id="wrapper">
+        {% include "sidebar.html" %}
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="/home/">
-                        Hello, {{customer.name}}
-                    </a>
-                </li>
-                <li>
-                    <a href="/details/">Details</a>
-                </li>
-                <li>
-                    <a href="/history/">Order History</a>
-                </li>
-                <li>
-                    <a href="/cart/">Order Cart</a>
-                </li>
-                <li>
-                    <a href="/logout/">Log out</a>
-                </li>
-                <li>
-                    <a href="/about/">About</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <div style="margin-top:60px;">
-
-        </div>
-<!--
-        <a href="#menu-toggle" class="btn btn-default fa-bars" id="menu-toggle">
-             <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </a>-->
         <!-- Page Content -->
         <div id="page-content-wrapper" style="padding:0; margin:0;">
             <div class="container-fluid">
@@ -139,11 +75,10 @@
                             {% if restaurants %}
                             {% for restaurant in restaurants %}
                             <div class="col-sm-4">
-                                <div class="card" style="width: 15rem;">
+                                <div class="card" style="width: 24rem;">
                                     <a href = "/restaurant/{{restaurant.name}}"><img class="card-img-top" src="{{restaurant.imgurl}}" alt="Card image cap"></a>
                                     <div class="card-block">
                                         <h4 class="card-title"><a href = "/restaurant/{{restaurant.name}}">{{restaurant.name}}</a></h4>
-
                                     </div>
                                 </div>
                             </div>

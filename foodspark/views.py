@@ -477,7 +477,7 @@ def about(request):
 		else:
 			user = Customer.objects.get(email=request.session['id'])
 		context = {
-			'user': user,
+			'customer':user
 		}
 		return render(request,"foodspark/about.html",context)
 	else:

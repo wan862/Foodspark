@@ -108,8 +108,8 @@ h1 .rest_details{
 .card-img-top{
     padding-left:1rem;
     padding-top:1rem;
-    width:14rem;                    /* card images*/
-    height:14rem;
+    width:24rem;                    /* card images*/
+    height:24rem;
 }
 
 .liner{
@@ -206,4 +206,16 @@ h1 .rest_details{
     margin-top: -36px;
     padding: 0;
     height: 34px;
+}
+
+.card-header {
+    background-color: #F5F5F5;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #373a3c;    
 }

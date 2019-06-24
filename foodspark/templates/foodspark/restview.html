@@ -22,52 +22,11 @@
 </head>
 
 <body>
-    <!-- navbar centred text vertically with  line-height-->
-    <nav class="navbar navbar-nav navbar-default navbar-fixed-top">
-        <div class="container" style="margin:0 !important;">
-            <span class="navbar-left" style="font-size:1.2em;"><img src="/static/img/logo.gif" class="logo_bitch"/>   FOODFAIR</span>
-
-            <!--<div class="nav navbar-nav navbar-right">
-               <a  href="#"> Log out</a>
-            </div>-->
-        </div>
-    </nav>
+    {% include "navbar.html" %}
 
     <div id="wrapper">
+        {% include "sidebar.html" %}
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="/home/">
-                        Hello, {{customer.name}}
-                    </a>
-                </li>
-                <li>
-                    <a href="/details/">Details</a>
-                </li>
-                <li>
-                    <a href="/history/">Order History</a>
-                </li>
-                <li>
-                    <a href="/cart/">Order Cart</a>
-                </li>
-                <li>
-                    <a href="/logout/">Log out</a>
-                </li>
-                <li>
-                    <a href="/about/">About</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <div style="margin-top:60px;">
-
-        </div>
-<!--
-        <a href="#menu-toggle" class="btn btn-default fa-bars" id="menu-toggle">
-             <span class="glyphicon glyphicon-menu-hamburger"></span>
-        </a>-->
         <!-- Page Content -->
         <div id="page-content-wrapper" style="padding:0; margin:0;">
             <div class="container-fluid">
