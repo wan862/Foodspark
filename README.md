@@ -1,14 +1,10 @@
 # Foodfair
 
-![logo](front-end/img/logo.ico)
+![logo](logo.ico)
 
-DBMS project for online Food Ordering system.
-
-Deployed on http://foodkgp.pythonanywhere.com
+Django project for online Food Ordering system.
 
 ![Screenshot](Screenshot.jpg)
-
-The frontend specifically can be found in `front-end/` folder.
 
 To run the server, run the following command:
 
