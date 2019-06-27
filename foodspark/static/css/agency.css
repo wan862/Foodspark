@@ -221,7 +221,7 @@ header .intro-text .intro-lead-in
 	font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-style:italic;
 	font-size:22px;
-	color:blue;
+	color:red;
 	line-height:22px;
 	margin-bottom:25px
 }
@@ -230,9 +230,9 @@ header .intro-text .intro-heading
 	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	text-transform:uppercase;
 	font-weight:700;
-	font-size:50px;
-	color:blue;
-	line-height:50px;
+	font-size:40px;
+	color:red;
+	line-height:40px;
 	margin-bottom:25px
 }
 @media (min-width:768px)
