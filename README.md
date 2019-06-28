@@ -1,6 +1,6 @@
 # Foodfair
 
-![logo](logo.jpg)
+![logo](foodspark/static/img/logo.ico)
 
 Django project for online Food Ordering system.
 
