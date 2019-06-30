@@ -85,15 +85,14 @@
                                 <form name="SignUpForm" class="signup" action='/signup/' method="post">
                                 	{% csrf_token %}
                                     <p class="title">Enter Details</p>
-                                    <input type="text" name="name" placeholder="Name" required autofocus />
+                                    <label style="color:black">please fill in your real information as it is extremely important</label>
+                                    <input id="name" type="text" name="name" placeholder="Name" required autofocus />
                                     <i class="fa fa-user"></i>
                                     <!--<input type="text" placeholder="Lastname" ng-model="user.lastname" required autofocus/>
                                     <i class="fa fa-user"></i>-->
                                     <input type="email" name="email" placeholder="Email" requuired autofocus/>
                                     <i class="fa fa-user"></i>
                                     <input type="number" name="phone" placeholder="Phone Number" ng-model="user.number" required autofocus/>
-                                    <i class="fa fa-user"></i>
-                                    <input type="text" name="address" placeholder="Address" required autofocus/>
                                     <i class="fa fa-user"></i>
                                     <input type="hidden" name="usertype" value="Customer">
                                     <!-- <div style="font color:black; align:left">

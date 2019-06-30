@@ -82,15 +82,15 @@ def signup(request):
 		name = request.POST.get('name')
 		phone = request.POST.get('phone')
 		password = request.POST.get('password')
-		address = request.POST.get('address')
 		usertype = request.POST.get('usertype')
 		if usertype == 'Customer':
-			user = Customer(name = name, email = email, phone = phone, address = address)
+			user = Customer(name = name, email = email, phone = phone)
 			user.set_password(user.make_password(password))
 			user.save()
 			request.session['id'] = email
 			request.session['type'] = 'customer'
 		elif usertype == 'Restaurant':
+			address = request.POST.get('address')
 			user = Restaurant(name= name, email = email, phone = phone, address = address)
 			user.set_password(user.make_password(password))
 			user.save()
@@ -119,15 +119,9 @@ def editDetails(request):
 				}
 			name = request.POST.get('name')
 			phone = request.POST.get('phone')
-			address = request.POST.get('address')
-			city = request.POST.get('city')
 
 			if name!="":
 				customer.name = name
-			if address!="":
-				customer.address = address
-			if city!="":
-				customer.city	= city
 			if phone!="":
 				customer.phone = phone
 			customer.save()
@@ -143,7 +137,6 @@ def editDetails(request):
 			address = request.POST.get('address')
 			res_type = request.POST.get('res_type')
 			cuisine = request.POST.get('cuisine')
-			city = request.POST.get('city')
 
 			if phone!="":
 				restaurant.phone = phone
@@ -154,8 +147,6 @@ def editDetails(request):
 			# restaurant.res_type = res_type
 			if cuisine!="":
 				restaurant.cuisine =cuisine
-			if city!="":
-				restaurant.city = city
 			restaurant.save()
 			messages.success(request,'Successfully saved :)')
 			return render(request,'foodspark/restdetails.html',context)

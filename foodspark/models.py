@@ -48,7 +48,6 @@ class Customer(models.Model):
 	# userid = models.CharField(primary_key = True,max_length =50)
 	password = models.CharField(max_length=100)
 	name = models.CharField(max_length=200)
-	address = models.TextField()
 	email = models.EmailField(primary_key = True)
 	phone_regex = RegexValidator(regex=r'^\d{8}$', message="Phone number must be entered in the format: '99999999'. 8 digits only.") #############look into regex
 	phone = models.CharField(validators=[phone_regex],max_length=15,blank = True)
