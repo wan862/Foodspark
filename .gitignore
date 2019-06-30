@@ -1,4 +1,4 @@
 *.pyc
 *~
 .DS_Store
-twilio.sh
+foodspark/sms_conf.py
