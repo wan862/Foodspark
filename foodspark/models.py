@@ -140,7 +140,7 @@ class Order(models.Model):
 		if cancelled:
 			header2 = 'CANCELLED!!! You have cancelled the order from {0}|{1}:'.format(self.restaurant.name, self.restaurant.phone)
 		else:
-			header2 = 'You have ordered from {0}|{1}:'.format(header2, self.restaurant.name, self.restaurant.phone)
+			header2 = 'You have ordered from {0}|{1}:'.format(self.restaurant.name, self.restaurant.phone)
 		sms.send(self.customer.phone, header2+text)
 
 class Cart(models.Model):
