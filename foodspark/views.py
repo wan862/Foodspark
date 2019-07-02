@@ -354,6 +354,14 @@ def clearCart(request):
 			q.delete()
 	return redirect('/cart/')
 
+def cancelOrder(request):
+	order = Order.objects.get(pk=request.GET.get('orderid'))
+	if order:
+		order.status = 1
+		order.save()
+		order.send_sms(True)
+	return redirect('/history/')
+
 def details(request):
 	if 'id' in request.session.keys():
 		if request.session['type'] == 'customer':
@@ -372,21 +380,29 @@ def details(request):
 def history(request):
 	if 'id' in request.session.keys():
 		customer = Customer.objects.get(email=request.session['id'])
-		query = Order.objects.order_by('-pk').all()
+		query = Order.objects.filter(customer=customer).order_by('-orderdate', '-ordertime').all()
 		restaurants = {}
-		fooditems = {}
+		orders = []
 		for x in query:
-			if x.customer == customer:
-					dic2 = {}
-					x.calamount()
-					for i,j in zip(x.getfooditems(),x.getqty()):
-						dic2[i] = j
-					fooditems[x] = dic2
-					restaurants[x] = x.restaurant
+			x.calamount()
+			order = {}
+			order_ts = datetime.datetime.combine(x.orderdate, x.ordertime)
+			if x.status == 0 and order_ts+datetime.timedelta(minutes=5) > datetime.datetime.now():
+				order['id'] = x.id
+			order['amount'] = x.amount
+			order['orderdate'] = x.orderdate
+			order['ordertime'] = x.ordertime
+			order['restaurant_name'] = x.restaurant.name
+			order['status'] = x.status
+			fooditems = {}
+			for i,j in zip(x.getfooditems(),x.getqty()):
+				fooditems[i] = j
+			order['fooditems'] = fooditems
+			orders.append(order)
 
 		context = {
 			'customer' : customer,
-			'fooditems' : fooditems,
+			'orders' : orders,
 			'restaurants' : restaurants,
 		}
 		return render(request,"foodspark/userhistory.html",context)

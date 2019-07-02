@@ -92,6 +92,11 @@ class Order(models.Model):
 	ordertime = models.TimeField()
 	pickuptime = models.TimeField()
 	orderdate = models.DateField(auto_now_add=True)	
+	STATUS = (
+		(0,'Sent'),
+		(1,'Cancelled'),
+	)
+	status = models.IntegerField(default=0, choices=STATUS)
 
 	def calamount(self):
 		self.amount = 0
@@ -112,7 +117,7 @@ class Order(models.Model):
 		myl = self.foodqty.split(",")
 		return myl
 
-	def send_sms(self):
+	def send_sms(self, cancelled=False):
 		myl = self.foodlist.split(",")
 		qty = self.foodqty.split(",")
 		amount = 0
@@ -125,11 +130,17 @@ class Order(models.Model):
 		text += ', pick-up at {0}'.format(self.pickuptime.strftime(PICKUP_TIME_FORMAT))
 
 		# send sms to Restaurent
-		header1 = 'Order from {0}|{1}:'.format(self.customer.name, self.customer.phone)
+		if cancelled:
+			header1 = 'CANCELLED!!! The order was cancelled from {0}|{1}:'.format(self.customer.name, self.customer.phone)
+		else:
+			header1 = 'Order from {0}|{1}:'.format(self.customer.name, self.customer.phone)
 		sms.send(self.restaurant.phone, header1+text)
 
 		# send sms to Customer
-		header2 = 'You have ordered from {0}|{1}:'.format(self.restaurant.name, self.restaurant.phone)
+		if cancelled:
+			header2 = 'CANCELLED!!! You have cancelled the order from {0}|{1}:'.format(self.restaurant.name, self.restaurant.phone)
+		else:
+			header2 = 'You have ordered from {0}|{1}:'.format(header2, self.restaurant.name, self.restaurant.phone)
 		sms.send(self.customer.phone, header2+text)
 
 class Cart(models.Model):

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^cart/?$',views.cart,name='cart'),
     url(r'^clearcart/$',views.clearCart,name='clearCart'),
     url(r'^history/?$',views.history,name='history'),
+    url(r'^cancelorder/$',views.cancelOrder,name='cancelOrder'),
     url(r'^addtocart/?$',views.saveToCart,name='saveToCart'),
     url(r'^restprofile/?$',views.restprofile,name='restprofile'),
     url(r'^resthistory/?$',views.restaurantOrderHistory,name='resthistory'),

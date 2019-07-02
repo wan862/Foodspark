@@ -37,28 +37,31 @@
                         <hr class="liner"/>
 
                         <!-- Yes, one card is one order-->
-                        {%for x,z in restaurants.items%}
+                        {%for order in orders%}
                         <div class="card">
+                            {% if order.status == 1 %}
+                            <div class="card-header" style="text-decoration: line-through">
+                            {% else %}
                             <div class="card-header">
-                            Total : ${{x.amount}}
+                            {% endif %}
+                            Total : ${{order.amount}}
                                 <span>
-                                <i class="glyphicon glyphicon-calendar blueicon ordercard"></i> {{x.orderdate}}
-                                <i class="glyphicon glyphicon-time blueicon ordercard"></i> {{x.ordertime}}
-                                <i class="glyphicon glyphicon-cutlery blueicon ordercard"></i> {{z.name}}
+                                <i class="glyphicon glyphicon-calendar blueicon ordercard"></i> {{order.orderdate}}
+                                <i class="glyphicon glyphicon-time blueicon ordercard"></i> {{order.ordertime}}
+                                <i class="glyphicon glyphicon-cutlery blueicon ordercard"></i> {{order.restaurant_name}}
                                 </span>
+                                {% if order.id %}
+                                <a class="btn btn-primary" href="/cancelorder?orderid={{order.id}}">Cancel</a>
+                                {% endif %}
                             </div>
-                            {%for z,k in fooditems.items%}
-                            {%if x.pk == z.pk%}
-                            {%for i,j in k.items%}
+                            {%for fooditem,qty in order.fooditems.items%}
                             <div class="card-block terabaaphumain">
                                 <div class="lefty">
-                                    <h4 class="card-title">{{i.name}} x {{j}} </h4>
-                                    <p class="card-text">${{i.price}}</p>
+                                    <h4 class="card-title">{{fooditem.name}} x {{qty}} </h4>
+                                    <p class="card-text">${{fooditem.price}}</p>
                                 </div>
                             </div>
                             <div style="padding-top:60px;"></div>
-                                {%endfor%}
-                            {%endif%}
                             {%endfor%}
                         </div>
                         <div style="padding-top:50px;"></div>

@@ -11,7 +11,7 @@ class FoodItemAdmin(admin.ModelAdmin):
     list_display = ('resid', 'name', 'cuisine', 'price' )
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'restaurant', 'foodlist', 'foodqty', 'amount', 'ordertime', 'orderdate')
+    list_display = ('customer', 'restaurant', 'foodlist', 'foodqty', 'amount', 'ordertime', 'orderdate', 'status')
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ('customer', 'fooditem', 'foodqty')
