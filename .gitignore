@@ -2,3 +2,4 @@
 *~
 .DS_Store
 foodspark/sms_conf.py
+db.sqlite3
