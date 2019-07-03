@@ -1,7 +1,7 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 
-DROP TABLE "foodspark_fooditem"
+DROP TABLE "foodspark_fooditem";
 CREATE TABLE IF NOT EXISTS "foodspark_fooditem" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(500) NOT NULL, "cuisine" varchar(100) NOT NULL, "course" varchar(1) NOT NULL, "price" real NOT NULL, "ordercount" integer NOT NULL, "resid_id" varchar(254) NOT NULL REFERENCES "foodspark_restaurant" ("email"));
 INSERT INTO foodspark_fooditem VALUES(5,'Pork Rib Noodle','Chinese','m',3.0,32,'wan862@gmail.com');
 INSERT INTO foodspark_fooditem VALUES(6,'Bak Kut Teh Mee','Chinese','m',3.5,11,'wan862@gmail.com');
@@ -15,11 +15,8 @@ INSERT INTO foodspark_fooditem VALUES(13,'Fishball Noodle $2.5 (L)','Chinese','m
 INSERT INTO foodspark_fooditem VALUES(14,'Prawn Noodle','Chinese','m',3.0,0,'wan862@gmail.com');
 INSERT INTO foodspark_fooditem VALUES(15,'Add On Fruit','Chinese','d',0.29999999999999998889,0,'wan862@gmail.com');
 
-DROP TABLE "foodspark_restaurant"
+DROP TABLE "foodspark_restaurant";
 CREATE TABLE IF NOT EXISTS "foodspark_restaurant" ("email" varchar(254) NOT NULL PRIMARY KEY, "password" varchar(100) NOT NULL, "name" varchar(200) NOT NULL, "address" text NOT NULL, "cuisine" varchar(100) NULL, "phone" varchar(15) NOT NULL, "imgurl" varchar(1000) NULL);
 INSERT INTO foodspark_restaurant VALUES('wan862@gmail.com','123456','Fishball Noodle','Stall No.3, HC Canteen','Chinese','81865372','/static/img/fishball_noodle.jpg');
-CREATE TABLE IF NOT EXISTS "foodspark_customer" ("password" varchar(100) NOT NULL, "name" varchar(200) NOT NULL, "email" varchar(254) NOT NULL PRIMARY KEY, "phone" varchar(15) NOT NULL);
-INSERT INTO foodspark_customer VALUES('e10adc3949ba59abbe56e057f20f883e','wan runhao','wan862@gmail.com','81865372');
-INSERT INTO foodspark_customer VALUES('e10adc3949ba59abbe56e057f20f883e','andy2','wan862@qq.com','81865372');
 
 COMMIT;
